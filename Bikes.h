@@ -117,6 +117,7 @@ public :
 	bool checkpassword(string pass)const;
 	virtual void showmenu(bikesystem& system) = 0;
 	virtual bool isadmin();
+	virtual vector<int>  getrentedbikesID()const = 0;
 	virtual ~user();
 };
 
@@ -125,6 +126,8 @@ public :
 	admin(string n, string pw , int ID) :user(n, pw,ID){}
 	void showmenu(bikesystem& obj)override;
 	bool isadmin();
+	vector<int>getrentedbikesID()const override;// it has to be written here as well or this class will be abstract and will cause many errors
+
 
 };
 
@@ -137,9 +140,11 @@ public :
 	void addrental(int bikeId);
 	void removeRental(int bikeID);
 	void showmenu(bikesystem& obj)override;
+	vector<int>getrentedbikesID()const override;
+
 };
 
-class usermanagement {
+class usermanagement  {
 private :
 	vector <user*>users; 
 
