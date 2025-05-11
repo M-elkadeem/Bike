@@ -635,8 +635,10 @@ user::~user()
  {
 	 return true;
  }
-
-
+ vector<int> admin::getrentedbikesID() const
+ {
+	 return {};
+ }
 void customer::addrental(int bikeId)
 {
 	rentedbikesID.push_back(bikeId);
@@ -718,6 +720,13 @@ void customer::showmenu(bikesystem& object)
 	
 }
 
+vector<int> customer::getrentedbikesID() const
+{
+	return rentedbikesID;
+}
+
+
+
 
  /////////////////////////////////////////////////////////////////////////////
 
@@ -757,8 +766,14 @@ void usermanagement::saveusers() const
 		for (auto user : users) {
 			if (user->isadmin()) 
 				continue;
-			out_file << user->getname() << "," << user->getpassword() << "," << user->getuserID() << "," << "customer" << endl;
+			out_file << user->getname() << "," << user->getpassword() << "," << user->getuserID() << "," << "customer" << ",";
+			vector <int>rentedbikesID = user->getrentedbikesID();
+			for (auto ID : rentedbikesID) {
+				out_file << ID << ",";
+			}
+			out_file << endl;
 		}
+		
 		out_file.close();
 	}
 	else {
@@ -770,10 +785,11 @@ void usermanagement::loadingusers()
 {
 	ifstream in_file("users_data.txt");
 	string name, password, type;
-	int userID;
+	int userID, bikeID;
 	string line;
+	//customer* newcustomer;
 	if (in_file.is_open()) {
-		while (getline(in_file, line)) {
+		while (getline(in_file, line)) {  /// it will keep loading till it finds a new line and go to the next line and so on tell we finsih all the lines
 			stringstream userstream(line);
 			getline(userstream, name, ',');
 			getline(userstream, password, ',');
@@ -781,8 +797,13 @@ void usermanagement::loadingusers()
 			userstream.ignore(); // will ignore the , 
 			getline(userstream, type, ',');
 
-			if (type == "customer")  {
-				registercustomer(name, password, userID);
+			if (type == "customer") {
+				customer* newcustomer = registercustomer(name, password, userID);
+
+				while (userstream >> bikeID) {
+					newcustomer->addrental(bikeID);// to load the bikes and then link them with the customer 
+					userstream.ignore();
+				}
 			}
 		}
 		in_file.close();
