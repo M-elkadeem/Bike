@@ -1,0 +1,75 @@
+class customer {
+	private:
+		static int num_customers;
+		string name;
+		string  cus_id;
+		string phone;
+		bool isphonevalid; // this function will make sure that the phone is valid when he signes his number 
+		string email;
+		bool isemailvalid;// will make sure that the email is valid cuz it has to end with @gamil.com 
+		bool activerental;
+		int rentedbikeID;
+		/* adding membership system for the class like a ticker is runned for week or month and check the member ship and so on */
+		//vector<int>r_bikes; // this will store the bike nubmers that has been rented in which that one customer cannot rent more that 2 bikes for example 
+		//vector<string> r_history;
+	
+		
+	public:
+		customer(string n, string id, string ph, string em);
+      
+		string getname();
+		string getid();
+		string getphone();
+		string getemail();
+		
+		// validation here u will need alot of stuff so do it later
+		//bool validatingphone();
+		//bool validatingemail();
+
+		// recording the status of renting and which bike has been rented 
+		void activationrenting( int id );
+		void returningbike();
+	};
+
+
+
+
+
+	cpp file 
+int Bikes::customer::num_customers = 0;// initialization for the customer numbers 
+Bikes::customer::customer(string n, string id, string ph, string em):name(n),cus_id(id),phone(ph),email(em),activerental(false), rentedbikeID(0)
+{
+	num_customers++;
+}
+
+string Bikes::customer::getname()
+{
+	return name;
+}
+
+string Bikes::customer::getid()
+{
+	return cus_id;
+}
+
+string Bikes::customer::getphone()
+{
+	return phone;
+}
+
+string Bikes::customer::getemail()
+{
+	return email;
+}
+
+void Bikes::customer::activationrenting(int id)
+{
+	activerental = true;
+	rentedbikeID = id;
+}
+
+void Bikes::customer::returningbike()
+{
+	activerental = false;
+	rentedbikeID = 0;
+}
