@@ -251,7 +251,7 @@ void bikesystem::displaybikes()const
 	}
 	cout << "========================================================================================\n";
 
-	bool count = count_if(bikes.begin(), bikes.end(), [](const bike* bike) { return bike->getavailability(); });  // here i used lamada function instead of decaling an isolated function
+	int count = count_if(bikes.begin(), bikes.end(), [](const bike* bike) { return bike->getavailability(); });  // here i used lamada function instead of decaling an isolated function
 
 	cout << "Total bikes: " << bikes.size() << " -> " << count << " available" << endl;
 	system("pause"); // this will pause the system before going to the next thing 
