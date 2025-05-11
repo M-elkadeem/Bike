@@ -1,1 +1,5 @@
+trek,fx 3,123,regular,m,1.5,0,1,0,0,0
+giant,escape 2,102,mountain,l,1.5,0,1,0,0,0
+scott,sub cross,103,105,s,1.5,0,1,0,0,0
+cannondale,qucik 4,106,Electrical,m,1.5,0,1,0,0,0
 
