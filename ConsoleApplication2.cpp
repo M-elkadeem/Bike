@@ -4,6 +4,7 @@ using namespace std;
 int main()
 {
 	
+	cout << "admin data are the following " << " mahmoud , medo , 562005" << endl;
 
 	handlemenu2();
 
