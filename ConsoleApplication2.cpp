@@ -3,8 +3,8 @@
 using namespace std;
 int main()
 {
-	
-	cout << "admin data are the following " << " mahmoud , medo , 562005" << endl;
+	cout << " the data of the admin are the following   mahmoud   medo   562005" << endl;
+           system("pause");
 
 	handlemenu2();
 
